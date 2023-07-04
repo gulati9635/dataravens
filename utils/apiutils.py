@@ -20,27 +20,49 @@ print(authorization_url)
 # After the user grants authorization and is redirected back to the redirect URI:
 # Extract the temporary authorization code from the redirected URL
 redirected_url = "urn:ietf:wg:oauth:2.0:oob"
+
+login_url = authorization_url
+
+# Login credentials
+username = 'gulati9635@gmail.com'
+password = 'Mohit123$'
+
+# Step 1: Login to obtain authentication token or session cookies
+login_data = {
+    'username': username,
+    'password': password
+}
+response = requests.post(login_url, data=login_data)
+print(response.status_code)
+if response.status_code == 200:
+    # Step 2: Extract authentication token or session cookies
+    auth_token = response.json()['auth_token']
+    cookies = response.cookies
+    print("insight if")
+    print(auth_token)
+
+
 #temp_code = redirected_url.split('?code=')[1] # Extract the code from the URL
 
 # Exchange the temporary code for an access token
-token_endpoint = 'https://authorization-server.com/token'
-client_secret = 'zqWu1B5sMfnZzLKVSWx-xjGJcQzBmEnV-ejDrt9NREc'
-
-token_data = {
-    'grant_type': 'authorization_code',
-    #'code': temp_code,
-    'redirect_uri': redirect_uri,
-    'client_id': client_id,
-    'client_secret': client_secret
-}
-
-response = requests.post(token_endpoint, data=token_data)
-print(response.content)
-
-# Parse the response to obtain the access token
-if response.status_code == 200:
-    token_info = response.json()
-    access_token = token_info['access_token']
-    print("Access Token:", access_token)
-else:
-    print("Token request failed:", response.text)
+# token_endpoint = 'https://authorization-server.com/token'
+# client_secret = 'zqWu1B5sMfnZzLKVSWx-xjGJcQzBmEnV-ejDrt9NREc'
+#
+# token_data = {
+#     'grant_type': 'authorization_code',
+#     #'code': temp_code,
+#     'redirect_uri': redirect_uri,
+#     'client_id': client_id,
+#     'client_secret': client_secret
+# }
+#
+# response = requests.post(token_endpoint, data=token_data)
+# print(response.content)
+#
+# # Parse the response to obtain the access token
+# if response.status_code == 200:
+#     token_info = response.json()
+#     access_token = token_info['access_token']
+#     print("Access Token:", access_token)
+# else:
+#     print("Token request failed:", response.text)
