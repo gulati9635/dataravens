@@ -14,3 +14,21 @@ def token_data(token_endpoint,token_data):
     else:
         print("Token request failed:", response.text)
     return access_token
+
+def get_api(access_token,url):
+
+    headers = {
+        'Authorization': 'Bearer ' + access_token,
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        data = response.json()
+        print(data)
+    else:
+        print('Error:', response.status_code)
+    return data
+
+

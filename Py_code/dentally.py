@@ -7,12 +7,12 @@ import utils.apiutils as apu
 import api_config.apiconfig as ap
 
 
-db.connect_azure_sql(conn.driver
-                     ,conn.server
-                     ,conn.port
-                     ,conn.database
-                     ,cred.username
-                     ,cred.password)
+# db.connect_azure_sql(conn.driver
+#                      ,conn.server
+#                      ,conn.port
+#                      ,conn.database
+#                      ,cred.username
+#                      ,cred.password)
 
 authorization_url = apu.authorization_url_fn(ap.authorization_endpoint,
                       ap.client_id,
@@ -33,7 +33,9 @@ token_data = {
     'client_id': ap.client_id,
     'client_secret': ap.client_secret
 }
-apu.token_data(ap.token_endpoint,token_data)
+token_generated = apu.token_data(ap.token_endpoint,token_data)
+
+apu.get_api(token_generated,ap.patient_read_endpoint)
 
 
 
