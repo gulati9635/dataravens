@@ -5,7 +5,7 @@ import db_config.credentials as cred
 import webbrowser
 import utils.apiutils as apu
 import api_config.apiconfig as ap
-
+import ddl.patients as dff
 
 # db.connect_azure_sql(conn.driver
 #                      ,conn.server
@@ -13,6 +13,8 @@ import api_config.apiconfig as ap
 #                      ,conn.database
 #                      ,cred.username
 #                      ,cred.password)
+
+db.connect_to_mysql(conn.host,cred.user,cred.password,conn.database)
 
 authorization_url = apu.authorization_url_fn(ap.authorization_endpoint,
                       ap.client_id,
@@ -35,7 +37,9 @@ token_data = {
 }
 token_generated = apu.token_data(ap.token_endpoint,token_data)
 
-apu.get_api(token_generated,ap.patient_read_endpoint)
+data = apu.get_api(token_generated,ap.patient_read_endpoint)
+
+dff.json_to_dataframe(data)
 
 
 
