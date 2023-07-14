@@ -1,5 +1,10 @@
-import  pandas as pd
-from Tools.scripts.dutree import display
+import pandas as pd
 
-df = pd.read_json("..\data.json")
-display(df)
+import json
+data = json.load(open('..\sample.json'))
+
+df = pd.DataFrame(data["patients"])
+
+print(df.columns)
+
+print(df.to_string(index=False))

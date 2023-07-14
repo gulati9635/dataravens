@@ -39,7 +39,10 @@ token_generated = apu.token_data(ap.token_endpoint,token_data)
 
 data = apu.get_api(token_generated,ap.patient_read_endpoint)
 
-dff.json_to_dataframe(data)
+import json
 
+json_object = json.dumps(data, indent=4)
 
-
+# Writing to sample.json
+with open("../sample.json", "w") as outfile:
+    outfile.write(json_object)
