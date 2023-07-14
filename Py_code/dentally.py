@@ -5,8 +5,6 @@ import db_config.credentials as cred
 import webbrowser
 import utils.apiutils as apu
 import api_config.apiconfig as ap
-import ddl.patients as dff
-
 # db.connect_azure_sql(conn.driver
 #                      ,conn.server
 #                      ,conn.port
