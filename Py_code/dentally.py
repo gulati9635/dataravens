@@ -10,7 +10,6 @@ from datetime import datetime
 import sqlalchemy
 
 
-
 # db.connect_azure_sql(conn.driver
 #                      ,conn.server
 #                      ,conn.port
@@ -52,6 +51,7 @@ df['timestamp'] = pd.to_datetime(datetime.now())
 
 print(df)
 
-engine = sqlalchemy.create_engine('mysql+pymysql://root:root123@localhost:3306/SQLDB')
+engine = sqlalchemy.create_engine( f"mssql+pyodbc://dentallyproject:Susanoo0609@dentallyprojectserver.database.windows.net/SQLDB?driver=odbc Driver 18 for SQL Serve")
 
-df.to_sql(table_name, engine, if_exists='replace', index=False)
+
+# df.to_sql(table_name, engine, if_exists='replace', index=False)
