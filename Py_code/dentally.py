@@ -42,16 +42,16 @@ token_generated = apu.token_data(ap.token_endpoint, token_data)
 
 data = apu.get_api(token_generated, ap.patient_read_endpoint)
 
-table_name = key = list(data.keys())[0]
+table_name = db.extract_tablename(data)
 print(table_name)
+key = table_name
 
-df = pd.json_normalize(data[key])
+df = db.create_dataframe(data,key)
 
-df['timestamp'] = pd.to_datetime(datetime.now())
+final_df= db.add_timestamp_column(df)
 
-print(df)
+print(final_df)
 
-engine = sqlalchemy.create_engine( f"mssql+pyodbc://dentallyproject:Susanoo0609@dentallyprojectserver.database.windows.net/SQLDB?driver=odbc Driver 18 for SQL Serve")
+engine = db.create_sql_server_engine(conn.server,conn.database,cred.username,cred.password,conn.driver)
 
-
-# df.to_sql(table_name, engine, if_exists='replace', index=False)
+# db.load_dataframe_to_sql(table_name, engine, 'replace', False)

@@ -6,18 +6,20 @@ data = json.load(open('..\sample.json'))
 df = pd.DataFrame(data["patients"])
 
 print(df.columns)
+column_count = len(df.columns)
+print(column_count)
 
-dataframe = print(df.to_string(index=False))
-
-# Establish connection to MySQL
-engine = create_engine('mysql+pymysql://root:root123@localhost:3306/sql_db')
-# Load DataFrame into MySQL table
-engine.dispose()
-
-table_name = 'patients'
-df.to_sql(table_name, con=engine, if_exists='replace', index=False)
-
-# Close the connection
+# dataframe = print(df.to_string(index=False))
+#
+# # Establish connection to MySQL
+# engine = create_engine('mysql+pymysql://root:root123@localhost:3306/sql_db')
+# # Load DataFrame into MySQL table
+# engine.dispose()
+#
+# table_name = 'patients'
+# df.to_sql(table_name, con=engine, if_exists='replace', index=False)
+#
+# # Close the connection
 
 
 
