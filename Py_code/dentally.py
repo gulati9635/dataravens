@@ -4,11 +4,6 @@ import db_config.credentials as cred
 import webbrowser
 import utils.apiutils as apu
 import api_config.apiconfig as ap
-import pandas as pd
-# import pymysql
-from datetime import datetime
-import sqlalchemy
-
 
 # db.connect_azure_sql(conn.driver
 #                      ,conn.server
