@@ -15,20 +15,20 @@ import sqlalchemy
 #     except odbc.Error as e:
 #         print(f"Database connection error: {e}")
 
-def connect_to_mysql(host, username, password, database):
-    try:
-        connection = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="root123",
-            database="sql_db"
-        )
-        if connection.is_connected():
-            print("Connected to MySQL database")
-            return connection
-    except mysql.connector.Error as error:
-        print(f"Failed to connect to MySQL database: {error}")
-        return None
+# def connect_to_mysql(host, username, password, database):
+#     try:
+#         connection = mysql.connector.connect(
+#             host="localhost",
+#             user="root",
+#             password="root123",
+#             database="sql_db"
+#         )
+#         if connection.is_connected():
+#             print("Connected to MySQL database")
+#             return connection
+#     except mysql.connector.Error as error:
+#         print(f"Failed to connect to MySQL database: {error}")
+#         return None
 
 def extract_tablename(data):
     table_name = list(data.keys())[0]
@@ -48,4 +48,4 @@ def create_sql_server_engine(server, database, username, password, driver):
     return engine
 
 def load_dataframe_to_sql(df, table_name, engine, if_exists='replace', index=False):
-    df.to_sql(table_name, engine, if_exists=if_exists, index=index)
+    df.to_sql(table_name, engine, if_exists=if_exists , index=index)
