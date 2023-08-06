@@ -4,6 +4,7 @@ import db_config.credentials as cred
 import webbrowser
 import utils.apiutils as apu
 import api_config.apiconfig as ap
+import pip_package as pp
 
 # db.connect_azure_sql(conn.driver
 #                      ,conn.server
@@ -13,7 +14,7 @@ import api_config.apiconfig as ap
 #                      ,cred.password)
 
 # db.connect_to_mysql(conn.host, cred.user, cred.password, conn.database)
-
+pp.install_project_dependencies(requirements_file='requirements.txt')
 authorization_url = apu.authorization_url_fn(ap.authorization_endpoint,
                                              ap.client_id,
                                              ap.redirect_uri,
@@ -47,6 +48,5 @@ final_df= db.add_timestamp_column(df)
 
 print(final_df)
 
-engine = db.create_sql_server_engine(conn.server,conn.database,cred.username,cred.password,conn.driver)
-
-# db.load_dataframe_to_sql(table_name, engine, 'replace', False)
+# engine = db.create_sql_server_engine(conn.server,conn.database,cred.username,cred.password,conn.driver)
+# db.load_dataframe_to_sql(final_df,table_name, engine, 'replace', False)
