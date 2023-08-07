@@ -22,6 +22,3 @@ def install_project_dependencies(requirements_file='dependencies.txt'):
             break
 
     print("All dependencies installed successfully!")
-
-# if __name__ == "__main__":
-#     install_project_dependencies()

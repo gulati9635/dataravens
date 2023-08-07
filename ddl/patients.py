@@ -1,25 +1,14 @@
 import pandas as pd
-from sqlalchemy import create_engine
-import json
-data = json.load(open('..\sample.json'))
+from datetime import datetime
 
-df = pd.DataFrame(data["patients"])
+def extract_tablename(data):
+    table_name = list(data.keys())[0]
+    return table_name
 
-print(df.columns)
-column_count = len(df.columns)
-print(column_count)
+def create_dataframe(data, key):
+    df = pd.json_normalize(data[key])
+    return df
 
-# dataframe = print(df.to_string(index=False))
-#
-# # Establish connection to MySQL
-# engine = create_engine('mysql+pymysql://root:root123@localhost:3306/sql_db')
-# # Load DataFrame into MySQL table
-# engine.dispose()
-#
-# table_name = 'patients'
-# df.to_sql(table_name, con=engine, if_exists='replace', index=False)
-#
-# # Close the connection
-
-
-
+def add_timestamp_column(df):
+    df['timestamp'] = pd.to_datetime(datetime.now())
+    return df
