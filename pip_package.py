@@ -1,6 +1,6 @@
 import subprocess
 
-def install_project_dependencies(requirements_file='requirements.txt'):
+def install_project_dependencies(requirements_file='dependencies.txt'):
     try:
         with open(requirements_file, 'r') as file:
             requirements = file.read().splitlines()
@@ -23,5 +23,5 @@ def install_project_dependencies(requirements_file='requirements.txt'):
 
     print("All dependencies installed successfully!")
 
-if __name__ == "__main__":
-    install_project_dependencies()
+# if __name__ == "__main__":
+#     install_project_dependencies()

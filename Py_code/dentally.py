@@ -14,7 +14,7 @@ import pip_package as pp
 #                      ,cred.password)
 
 # db.connect_to_mysql(conn.host, cred.user, cred.password, conn.database)
-pp.install_project_dependencies(requirements_file='requirements.txt')
+pp.install_project_dependencies(requirements_file='dependencies.txt')
 authorization_url = apu.authorization_url_fn(ap.authorization_endpoint,
                                              ap.client_id,
                                              ap.redirect_uri,
